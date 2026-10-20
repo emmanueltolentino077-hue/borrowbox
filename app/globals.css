@@ -1,26 +1,179 @@
 @import "tailwindcss";
 
+/* BorrowBox design tokens (source: DESIGN-SYSTEM (1).md, section 6). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand */
+  --color-primary: #15803d;
+  --color-primary-700: #006e2e;
+  --color-primary-50: #eafff1;
+  --color-secondary: #0f172a;
+  --color-secondary-600: #475569;
+  --color-tertiary: #d97706;
+  --color-tertiary-800: #6b3c00;
+  --color-tertiary-100: #ffebdc;
+  --color-neutral: #78716c;
+  --color-neutral-200: #e8dfda;
+  --color-neutral-900: #292524;
+
+  /* Semantic */
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fee2e2;
+
+  /* Surfaces */
+  --surface-page: #e0d8d2;
+  --surface-card: #f5ede6;
+  --surface-field: #efe5df;
+  --border: #b9c4bb;
+  --text: #1f1a17;
+  --text-body: #3d4640;
+
+  /* Shape */
+  --radius-card: 16px;
+  --radius-control: 4px;
+  --radius-pill: 999px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Primary scale */
+  --color-primary-950: #002d10;
+  --color-primary-900: #003d18;
+  --color-primary-800: #005a24;
+  --color-primary-700: #006e2e;
+  --color-primary-600: #15803d;
+  --color-primary-500: #2a9150;
+  --color-primary-400: #4caf6e;
+  --color-primary-300: #7ad79a;
+  --color-primary-200: #99f6b4;
+  --color-primary-100: #c8fbd8;
+  --color-primary-50: #eafff1;
+
+  /* Secondary scale */
+  --color-secondary-950: #0a0f1c;
+  --color-secondary-900: #0f172a;
+  --color-secondary-800: #1e293b;
+  --color-secondary-700: #334155;
+  --color-secondary-600: #475569;
+  --color-secondary-500: #64748b;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-200: #dde3f7;
+  --color-secondary-100: #eef1fd;
+  --color-secondary-50: #f8fafc;
+
+  /* Tertiary scale */
+  --color-tertiary-950: #2b1400;
+  --color-tertiary-900: #4a2800;
+  --color-tertiary-800: #6b3c00;
+  --color-tertiary-700: #8f5200;
+  --color-tertiary-600: #b26500;
+  --color-tertiary-500: #d97706;
+  --color-tertiary-400: #ff9a2e;
+  --color-tertiary-300: #ffb878;
+  --color-tertiary-200: #ffd9bd;
+  --color-tertiary-100: #ffebdc;
+  --color-tertiary-50: #fff7f0;
+
+  /* Neutral scale */
+  --color-neutral-950: #1c1917;
+  --color-neutral-900: #292524;
+  --color-neutral-800: #44403c;
+  --color-neutral-700: #57534e;
+  --color-neutral-600: #78716c;
+  --color-neutral-500: #8f8680;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-300: #d6cfca;
+  --color-neutral-200: #e8dfda;
+  --color-neutral-100: #f5ede6;
+  --color-neutral-50: #fbf7f4;
+
+  /* Surfaces and text */
+  --color-page: #e0d8d2;
+  --color-card: #f5ede6;
+  --color-field: #efe5df;
+  --color-line: #b9c4bb;
+  --color-ink: #1f1a17;
+  --color-body: #3d4640;
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fee2e2;
+
+  /* Type */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Shape */
+  --radius-card: 16px;
+  --radius-control: 4px;
+  --radius-pill: 999px;
+
+  /* Type scale */
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-h1: 28px;
+  --text-h1--line-height: 36px;
+  --text-h2: 20px;
+  --text-h2--line-height: 28px;
+  --text-h3: 16px;
+  --text-h3--line-height: 24px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e0d8d2 !important;
+  color: #3d4640 !important;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Explicit fallback utility classes to guarantee styling regardless of browser dark-mode settings */
+.bg-page {
+  background-color: #e0d8d2 !important;
+}
+
+.bg-card {
+  background-color: #f5ede6 !important;
+}
+
+.bg-field {
+  background-color: #efe5df !important;
+}
+
+.border-line {
+  border-color: #b9c4bb !important;
+}
+
+.text-ink {
+  color: #1f1a17 !important;
+}
+
+.text-body {
+  color: #3d4640 !important;
+}
+
+.rounded-card {
+  border-radius: 16px !important;
+}
+
+.rounded-control {
+  border-radius: 4px !important;
+}
+
+.rounded-pill {
+  border-radius: 999px !important;
+}
+
+/* Visible keyboard focus: 2px Primary 400 ring. */
+:focus-visible {
+  outline: 2px solid #4caf6e;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
